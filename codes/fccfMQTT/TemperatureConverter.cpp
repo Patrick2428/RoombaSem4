@@ -55,6 +55,7 @@ void TemperatureConverter::on_message(const mosquitto_message *message)
       try {
          /// @note C++11: stod() can throw invalid_argument exception.
          temp_celsius = std::stod(static_cast<char *>(message->payload));
+	 std::cout << "The received value is: " << temp_celsius <<std::endl;
          temp_fahrenheit = temp_celsius * 9.0 / 5.0 + 32.0;
          std::string messg{std::to_string(temp_fahrenheit)};
          auto rc = publish(nullptr, MQTT_TOPIC_FAHRENHEIT_A.c_str(),
