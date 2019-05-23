@@ -1,4 +1,5 @@
 CXX = g++
+INCLUDING = -I../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink
 CXXFLAGS = -std=c++14 -g -Wall -Wextra -Weffc++ -Wpedantic \
            -Wcast-align -Wcast-qual -Wctor-dtor-privacy \
            -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op \
@@ -6,12 +7,15 @@ CXXFLAGS = -std=c++14 -g -Wall -Wextra -Weffc++ -Wpedantic \
            -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo \
            -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused \
            -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option \
-           -D_GLIBCXX_USE_NANOSLEEP
-LDFLAGS = -pthread -lmosquittopp -lmosquitto -L/usr/local/lib
+           -D_GLIBCXX_USE_NANOSLEEP\
+	   -Os $(INCLUDING)
+LDFLAGS = -pthread -lboost_system -lmosquittopp -lmosquitto -L/usr/local/lib
 
 EXECUTABLE = RoombaController
-SOURCES = ${wildcard *.cpp}
-HEADERS = ${wildcard *.h}
+SOURCES = ${wildcard *.cpp}\
+	  ${wildcard ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.cpp}
+HEADERS = ${wildcard *.h}\
+	  ${wildcard ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.h}
 OBJECTS = ${SOURCES:.cpp=.o}
 
 .PHONY: all

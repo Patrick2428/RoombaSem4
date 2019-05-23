@@ -14,6 +14,8 @@ public:
 		  const std::string &host, int port);
 
   virtual ~MQTTDataHandler();
+  std::string getData() const;
+  void resetData();
 
 protected:
 

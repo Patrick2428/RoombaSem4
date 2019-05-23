@@ -1,0 +1,14 @@
+- Program for mosquitto communication		--complete
+  	- doxy + plantuml of the mosquitto code (1) --Patrick
+
+- Implement a Webapp (5)  --Ana
+
+- Write code for Raspberry and Roomba communication (USART) -- Patrick			
+  	- Roomba MQTT code for notifying message-Parloop class (6)
+  	- Code for RoombaMQTT object publishing the notifying message (9) 
+	- Sensor and Actuator classes (10)
+
+- SenseHat code showing LED patterns (11)	--Nina
+
+- Documents (Doxygen + PlantUML)  for the codes (1)	--Ana, Nina, Patrick
+

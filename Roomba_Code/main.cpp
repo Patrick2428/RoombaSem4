@@ -1,10 +1,17 @@
 #include "AppInfo.h"
 #include "Config.h"
 #include "MQTTDataHandler.h"
+#include "OpenInterfaceConfig.h"
+#include "SerialLink.h"
 
 #include <iostream>
 #include <csignal>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <vector>
+
+using namespace std::chrono_literals;
 
 volatile sig_atomic_t receivedSIGINT{false};
 
@@ -20,6 +27,10 @@ int main(int argc, char *argv[])
   int major = 0;
   int minor = 0;
   int revision = 0;
+  std::string idleData = "idle";
+  //Initialising serial connection
+  SerialLink sl {"/dev/ttyUSB0",
+      static_cast<unsigned int>(Baud::ROOMBA_DEFAULT)};
   
   std::cout << "The application started" << std::endl;
   std::cout << "Version: " << VERSION <<std::endl;
@@ -34,11 +45,43 @@ int main(int argc, char *argv[])
 
   MQTTDataHandler MQTTData("RoombaController", "MQTTData", mqttBroker, mqttBrokerPort);
 
-  while (!receivedSIGINT){
-    int rc{MQTTData.loop()};
-    if(rc) {
+  sl.write(startSafe());
+
+  //loop receiving signals  
+  while (!receivedSIGINT)
+    {
+      int rc{MQTTData.loop()};
+
+      if(MQTTData.getData() == "drive")
+	{
+	  std::cout << "Driving mode selected" <<std::endl;
+	  sl.write(driveDirect(100, 100));
+	  std::this_thread::sleep_for(3s);
+
+	  sl.write(driveDirect(0, -100));
+	  std::this_thread::sleep_for(3s);
+
+	  sl.write(driveDirect(-100, -100));
+	  std::this_thread::sleep_for(3s);
+      
+	  sl.write(driveDirect(100, 0));
+	  std::this_thread::sleep_for(3s);
+	}
+      if(MQTTData.getData() == "stop")
+	{
+	  std::cout << "device Stopped" <<std::endl;
+	  sl.write(driveDirect(0 , 0));
+	  sl.write(startSafe());
+		   
+	}
+
+      //reseting datastring value
+      MQTTData.resetData();
+	
+      if(rc) {
       std::cerr<<"--Reconnecting MQTT rc--" << rc << std::endl;
       MQTTData.reconnect();
+
     }
   }
 

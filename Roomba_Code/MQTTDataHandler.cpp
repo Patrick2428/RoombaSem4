@@ -66,3 +66,12 @@ void MQTTDataHandler::on_error()
 {
   std::cout<<"Error"<<std::endl;
 }
+
+std::string MQTTDataHandler::getData() const
+{
+  return receivedData;
+}
+void MQTTDataHandler::resetData()
+{
+  receivedData.clear();
+}

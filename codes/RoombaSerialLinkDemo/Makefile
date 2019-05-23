@@ -1,5 +1,5 @@
 CXX = g++
-INCLUDING = -I../../MQTT-SenseHAT-Utils/_libUtils/SerialLink
+INCLUDING = -I ../MQTT-SenseHAT-Utils/_libUtils/SerialLink
 CXXFLAGS = -std=c++14 -Wall -Wextra -Weffc++ -Wpedantic \
            -Wcast-align -Wcast-qual -Wctor-dtor-privacy \
            -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op \
@@ -13,9 +13,9 @@ LDFLAGS = -lboost_system -pthread
 
 EXECUTABLE = roombaSerialLinkDemo
 SOURCES = ${wildcard *.cpp} \
-          ${wildcard ../../MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.cpp}
+          ${wildcard ../MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.cpp}
 HEADERS = ${wildcard *.h} \
-          ${wildcard ../../MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.h}
+          ${wildcard ../MQTT-SenseHAT-Utils/_libUtils/SerialLink/*.h}
 OBJECTS = ${SOURCES:.cpp=.o}
 
 .PHONY: all

@@ -28,7 +28,7 @@ const bool MQTT_RETAIN_OFF{false};
 /// message.
 const bool MQTT_RETAIN_ON{true};
 
-const std::string MQTT_LOCAL_BROKER{"127.0.0.1"};
+const std::string MQTT_LOCAL_BROKER{"broker.hivemq.com"};
 const int MQTT_LOCAL_BROKER_PORT{1883};
 
 const std::string GROUP{"TeamFyre"};
