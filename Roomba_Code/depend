@@ -1,9 +1,14 @@
+statemachine.o: statemachine.cpp statemachine.h \
+ ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
+ OpenInterfaceConfig.h
 MQTTDataHandler.o: MQTTDataHandler.cpp MQTTDataHandler.h Config.h \
  MQTTconfig.h
+OpenInterfaceConfig.o: OpenInterfaceConfig.cpp OpenInterfaceConfig.h
 MQTTconfig.o: MQTTconfig.cpp MQTTconfig.h
 main.o: main.cpp AppInfo.h Config.h MQTTconfig.h MQTTDataHandler.h \
  OpenInterfaceConfig.h \
- ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h
+ ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
+ statemachine.h
 SerialLink.o: \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.cpp \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h

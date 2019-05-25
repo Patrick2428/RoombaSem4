@@ -3,6 +3,7 @@
 #include "MQTTDataHandler.h"
 #include "OpenInterfaceConfig.h"
 #include "SerialLink.h"
+#include "statemachine.h"
 
 #include <iostream>
 #include <csignal>
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
   int major = 0;
   int minor = 0;
   int revision = 0;
+  bool driveMode = false;
   std::string idleData = "idle";
   //Initialising serial connection
   SerialLink sl {"/dev/ttyUSB0",
@@ -54,26 +56,17 @@ int main(int argc, char *argv[])
 
       if(MQTTData.getData() == "drive")
 	{
+	  driveMode = true;
 	  std::cout << "Driving mode selected" <<std::endl;
-	  sl.write(driveDirect(100, 100));
-	  std::this_thread::sleep_for(3s);
-
-	  sl.write(driveDirect(0, -100));
-	  std::this_thread::sleep_for(3s);
-
-	  sl.write(driveDirect(-100, -100));
-	  std::this_thread::sleep_for(3s);
-      
-	  sl.write(driveDirect(100, 0));
-	  std::this_thread::sleep_for(3s);
+	  std::cout << "Enter driving direction" << std::endl;	  
 	}
-      if(MQTTData.getData() == "stop")
+      else if(MQTTData.getData() == "stop")
 	{
+	  driveMode = false;
 	  std::cout << "device Stopped" <<std::endl;
-	  sl.write(driveDirect(0 , 0));
-	  sl.write(startSafe());
-		   
 	}
+
+      sendsignal(MQTTData.getData(), sl ,driveMode);
 
       //reseting datastring value
       MQTTData.resetData();
