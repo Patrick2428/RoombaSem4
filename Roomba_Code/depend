@@ -1,14 +1,20 @@
 statemachine.o: statemachine.cpp statemachine.h \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
- OpenInterfaceConfig.h
+ rotationmotor.h CommandProcessor.h OpenInterfaceConfig.h
+Definitions.o: Definitions.cpp Definitions.h AppInfo.h Config.h \
+ MQTTconfig.h MQTTDataHandler.h OpenInterfaceConfig.h \
+ ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
+ statemachine.h rotationmotor.h CommandProcessor.h
+CommandProcessor.o: CommandProcessor.cpp CommandProcessor.h
 MQTTDataHandler.o: MQTTDataHandler.cpp MQTTDataHandler.h Config.h \
  MQTTconfig.h
 OpenInterfaceConfig.o: OpenInterfaceConfig.cpp OpenInterfaceConfig.h
+rotationmotor.o: rotationmotor.cpp rotationmotor.h
 MQTTconfig.o: MQTTconfig.cpp MQTTconfig.h
-main.o: main.cpp AppInfo.h Config.h MQTTconfig.h MQTTDataHandler.h \
- OpenInterfaceConfig.h \
+main.o: main.cpp Definitions.h AppInfo.h Config.h MQTTconfig.h \
+ MQTTDataHandler.h OpenInterfaceConfig.h \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
- statemachine.h
+ statemachine.h rotationmotor.h CommandProcessor.h
 SerialLink.o: \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.cpp \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h

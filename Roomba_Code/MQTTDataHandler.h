@@ -9,7 +9,8 @@
 class MQTTDataHandler : public mosqpp::mosquittopp
 {
 public:
-  MQTTDataHandler(const std::string &appname,
+  MQTTDataHandler(const std::string &data,
+		  const std::string &appname,
 		  const std::string &clientname,
 		  const std::string &host, int port);
 

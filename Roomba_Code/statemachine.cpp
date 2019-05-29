@@ -1,6 +1,7 @@
 #include "statemachine.h"
 #include "OpenInterfaceConfig.h"
 #include "SerialLink.h"
+#include "CommandProcessor.h"
 
 #include <iostream>
 #include <string>
@@ -10,35 +11,49 @@
 
 using namespace std::chrono_literals;
 
-void sendsignal(const std::string &signal, SerialLink &sl, bool driveMode)
+void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep, const CommandProcessor &cmdpp )
 {
-  
-  if(driveMode)
+  switch(Modep)
     {
-       if(signal == "straight")
-	 {
-	   std::cout <<"Going straight" <<std::endl;
-	   sl.write(driveDirect(50,50));
-	 }
-       else if(signal == "right")
-	 {
-	   std::cout <<"Going right" <<std::endl;
-	   sl.write(driveDirect(0,50));
-	 }
-       else if(signal == "left")
-	 {
-	   std::cout <<"Going left" <<std::endl;
-	   sl.write(driveDirect(50,0));
-	 }
-       else if(signal == "reverse")
-	 {
-	   std::cout<<"Going backwards" <<std::endl;
-	   sl.write(driveDirect(-50,-50));
-	 }
+    case 0:
+      //start-up mode
+      break;
+      
+    case 1:
+      //drive mode
+       break;
+
+    case 2:
+      //reset mode
+      slp.write(driveDirect(0, 0));
+      slp.write(startSafe());
+      break;
+
+    case 3:
+      //cleaning mode
+      slp.write(clean());
+      break;
+
+    case 4:
+      //docking mode
+      slp.write(dock());
+      break;
+
+    case 5:
+      //battle mode
+      slp.write(playSong(0));
+      std::this_thread::sleep_for(5.5s);
+      slp.write(playSong(1));
+      std::this_thread::sleep_for(2s);
+      
+      break;
+
+    default:
+      std::cerr<<"wrong mode"<<std::endl;
+      exit(1);
+      
     }
-  else
-    {     
-	  sl.write(driveDirect(0, 0));
-    }
+  
+
   
 }

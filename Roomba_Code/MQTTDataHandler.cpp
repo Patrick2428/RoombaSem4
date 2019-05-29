@@ -4,11 +4,12 @@
 #include <mosquittopp.h>
 #include <string>
 
-MQTTDataHandler::MQTTDataHandler(const std::string &appname,
+MQTTDataHandler::MQTTDataHandler(const std::string &data,
+				 const std::string &appname,
 				 const std::string &clientname,
 				 const std::string &host,
 				 int port)
-  : mosqpp::mosquittopp{(HOSTNAME + appname + clientname).c_str()}
+  : receivedData(data), mosqpp::mosquittopp{(HOSTNAME + appname + clientname).c_str()} 
   
 {
   std::cout << "Connecting to host = " <<host << " port = " << port
@@ -74,4 +75,5 @@ std::string MQTTDataHandler::getData() const
 void MQTTDataHandler::resetData()
 {
   receivedData.clear();
+  receivedData = "idle";
 }

@@ -2,7 +2,9 @@
 #define STATEMACHINE_H_
 #include <string>
 #include "SerialLink.h"
+#include "rotationmotor.h"
+#include "CommandProcessor.h"
 
-void sendsignal(const std::string &signal, SerialLink &sl,bool driveMode);
+void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep,const  CommandProcessor &cmdpp);
 
 #endif

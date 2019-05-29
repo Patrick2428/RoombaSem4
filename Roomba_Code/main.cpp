@@ -1,16 +1,4 @@
-#include "AppInfo.h"
-#include "Config.h"
-#include "MQTTDataHandler.h"
-#include "OpenInterfaceConfig.h"
-#include "SerialLink.h"
-#include "statemachine.h"
-
-#include <iostream>
-#include <csignal>
-#include <string>
-#include <chrono>
-#include <thread>
-#include <vector>
+#include "Definitions.h"
 
 using namespace std::chrono_literals;
 
@@ -23,16 +11,24 @@ void handleSIGINT(int /* s */)
 
 int main(int argc, char *argv[])
 {
+  //definitions
   std::string mqttBroker{MQTT_LOCAL_BROKER};
   int mqttBrokerPort{MQTT_LOCAL_BROKER_PORT};
   int major = 0;
   int minor = 0;
   int revision = 0;
-  bool driveMode = false;
-  std::string idleData = "idle";
+  int RoombaMode = 0;
+  CommandProcessor cmdp;
+  rotationMotor lm(50,20,20),rm(50,20,20);
+  
   //Initialising serial connection
   SerialLink sl {"/dev/ttyUSB0",
       static_cast<unsigned int>(Baud::ROOMBA_DEFAULT)};
+  //Initialising MQTT connection
+  MQTTDataHandler MQTTData("idle","RoombaController", "MQTTData", mqttBroker, mqttBrokerPort);
+
+  //Initialising Commands
+  addCommands(cmdp, sl, lm, rm, RoombaMode);
   
   std::cout << "The application started" << std::endl;
   std::cout << "Version: " << VERSION <<std::endl;
@@ -45,32 +41,23 @@ int main(int argc, char *argv[])
   std::cout << "MQTT version: " << major << '.' << minor << '.'
        << revision <<std:: endl;
 
-  MQTTDataHandler MQTTData("RoombaController", "MQTTData", mqttBroker, mqttBrokerPort);
-
   sl.write(startSafe());
+  sl.write(addSong(2));
+  cmdp.executeCommand(MQTTData.getData());
 
   //loop receiving signals  
   while (!receivedSIGINT)
     {
+     
       int rc{MQTTData.loop()};
-
-      if(MQTTData.getData() == "drive")
+      
+      if(MQTTData.getData() != "idle")
 	{
-	  driveMode = true;
-	  std::cout << "Driving mode selected" <<std::endl;
-	  std::cout << "Enter driving direction" << std::endl;	  
-	}
-      else if(MQTTData.getData() == "stop")
-	{
-	  driveMode = false;
-	  std::cout << "device Stopped" <<std::endl;
-	}
-
-      sendsignal(MQTTData.getData(), sl ,driveMode);
-
+	  cmdp.executeCommand(MQTTData.getData());
+	  sendsignal(MQTTData.getData(), sl , RoombaMode, cmdp);
+	}	
       //reseting datastring value
-      MQTTData.resetData();
-	
+      MQTTData.resetData(); 	
       if(rc) {
       std::cerr<<"--Reconnecting MQTT rc--" << rc << std::endl;
       MQTTData.reconnect();
@@ -83,3 +70,4 @@ int main(int argc, char *argv[])
   mosqpp::lib_cleanup();
   return 0;
 }
+
