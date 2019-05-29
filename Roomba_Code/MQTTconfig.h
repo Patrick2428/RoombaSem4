@@ -33,6 +33,6 @@ const int MQTT_LOCAL_BROKER_PORT{1883};
 
 const std::string GROUP{"TeamFyre"};
 /// @note Every topic must start with MQTT_TOPIC_ROOT.
-const std::string MQTT_TOPIC_ROOT{"ESEiot/" + GROUP + "/" + HOSTNAME};
+const std::string MQTT_TOPIC_ROOT{"ESEiot/" + GROUP };
 
 #endif

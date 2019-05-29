@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
   mosqpp::lib_init();
   mosqpp::lib_version(&major, &minor, &revision);
   std::cout << "MQTT version: " << major << '.' << minor << '.'
-       << revision <<std:: endl;
+       << revision << std:: endl;
 
   sl.write(startSafe());
   sl.write(addSong(2));

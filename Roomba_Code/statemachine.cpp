@@ -41,10 +41,14 @@ void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep, const C
 
     case 5:
       //battle mode
+      slp.write(drive(500,10));
+      std::this_thread::sleep_for(0.5s);
       slp.write(playSong(0));
-      std::this_thread::sleep_for(5.5s);
+      std::this_thread::sleep_for(5.0s);
+      slp.write(drive(500,-10));
+      std::this_thread::sleep_for(0.5s);
       slp.write(playSong(1));
-      std::this_thread::sleep_for(2s);
+      std::this_thread::sleep_for(3s);
       
       break;
 
