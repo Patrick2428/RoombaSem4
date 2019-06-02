@@ -11,17 +11,17 @@
 
 using namespace std::chrono_literals;
 
-void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep, const CommandProcessor &cmdpp )
+void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep)
 {
   switch(Modep)
     {
-    case 0:
-      //start-up mode
+    case 0:  
+      //help mode
       break;
       
     case 1:
       //drive mode
-       break;
+      break;
 
     case 2:
       //reset mode
@@ -41,12 +41,8 @@ void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep, const C
 
     case 5:
       //battle mode
-      slp.write(drive(500,10));
-      std::this_thread::sleep_for(0.5s);
       slp.write(playSong(0));
-      std::this_thread::sleep_for(5.0s);
-      slp.write(drive(500,-10));
-      std::this_thread::sleep_for(0.5s);
+      std::this_thread::sleep_for(7s);
       slp.write(playSong(1));
       std::this_thread::sleep_for(3s);
       

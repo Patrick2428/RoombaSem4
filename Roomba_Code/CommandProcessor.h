@@ -6,22 +6,27 @@
 #include <functional>
 #include <iterator>
 #include <algorithm>
+#include <string>
+#include "MQTTDataHandler.h"
 
 class CommandProcessor
 {
-public:
-//Constructor and Destructor
-CommandProcessor();
+ public:
+  //Constructor and Destructor
+  CommandProcessor();
 
-//template commandfunction_t for functional function
-using commandfunction_t = std::function<void()>;
+  //template commandfunction_t for functional function
+  using commandfunction_t = std::function<void()>;
 
-//memberfunctions
-void addCommand(const std::string &command,CommandProcessor::commandfunction_t cf);
-void executeCommand(const std::string &command);
+  //memberfunctions
+  void addCommand(const std::string &command,CommandProcessor::commandfunction_t cf);
+  void executeCommand(const std::string &command);
+  void removeCommand(const std::string &command);
 
-private:
-std::map <std::string, commandfunction_t> commands_;
+ private:
+  std::map <std::string, commandfunction_t> commands_;
+  
+ 
 
 };
 

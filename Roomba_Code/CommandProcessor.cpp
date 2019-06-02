@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CommandProcessor.h"
 
+
 CommandProcessor::CommandProcessor()
 {
 }
@@ -24,4 +25,13 @@ else
     std::cout<<"Error: command could not be found"<<std::endl;
 }
 
+}
+
+void CommandProcessor::removeCommand(const std::string &command)
+{
+  auto p = commands_.find(command);
+  if( p != end(commands_))
+    {
+      commands_.erase(p);
+    }
 }

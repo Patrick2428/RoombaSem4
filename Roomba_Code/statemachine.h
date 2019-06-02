@@ -5,6 +5,6 @@
 #include "rotationmotor.h"
 #include "CommandProcessor.h"
 
-void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep,const  CommandProcessor &cmdpp);
+void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep);
 
 #endif

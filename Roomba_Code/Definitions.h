@@ -16,8 +16,16 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+#include <stdio.h>
+#include <sstream>
 
-void addCommands (CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm,int &RoombaMode );
+
+void addCommands (CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm,int &RoombaMode, MQTTDataHandler &MQTTData);
+
+void addDriveCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm, MQTTDataHandler &MQTTData);
+
+void removeDriveCommands(CommandProcessor &cmdp);
+  
 
 #endif
 

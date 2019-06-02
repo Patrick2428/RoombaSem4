@@ -8,4 +8,6 @@
 //MQTT publisher topic to controll the roomba
 const std::string MQTT_TOPIC_ROOMBA_CONTROLLER{MQTT_TOPIC_ROOT + "/roomba/controller"};
 
+const std::string MQTT_TOPIC_ROOMBA_INTERFACE{MQTT_TOPIC_ROOT + "/roomba/interface"};
+
 #endif

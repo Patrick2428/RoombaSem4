@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
   //definitions
   std::string mqttBroker{MQTT_LOCAL_BROKER};
+  std::string message , command;
   int mqttBrokerPort{MQTT_LOCAL_BROKER_PORT};
   int major = 0;
   int minor = 0;
@@ -26,9 +27,6 @@ int main(int argc, char *argv[])
       static_cast<unsigned int>(Baud::ROOMBA_DEFAULT)};
   //Initialising MQTT connection
   MQTTDataHandler MQTTData("idle","RoombaController", "MQTTData", mqttBroker, mqttBrokerPort);
-
-  //Initialising Commands
-  addCommands(cmdp, sl, lm, rm, RoombaMode);
   
   std::cout << "The application started" << std::endl;
   std::cout << "Version: " << VERSION <<std::endl;
@@ -43,27 +41,43 @@ int main(int argc, char *argv[])
 
   sl.write(startSafe());
   sl.write(addSong(2));
+  
+  
+  //Initialising Commands
+  addCommands(cmdp, sl, lm, rm, RoombaMode,MQTTData);
+  MQTTData.sendMessage( "Choose a mode: drive, clean, dock, battle or reset");
   cmdp.executeCommand(MQTTData.getData());
+  MQTTData.sendMessage(MQTTData.getMessage());
 
   //loop receiving signals  
   while (!receivedSIGINT)
     {
-     
       int rc{MQTTData.loop()};
       
       if(MQTTData.getData() != "idle")
 	{
 	  cmdp.executeCommand(MQTTData.getData());
-	  sendsignal(MQTTData.getData(), sl , RoombaMode, cmdp);
+	  MQTTData.sendMessage(MQTTData.getMessage());
+	  
+	  if(RoombaMode == 1)
+	    {
+	      addDriveCommands(cmdp, sl, lm, rm, MQTTData);
+	      sendsignal(MQTTData.getData(), sl, RoombaMode);	      
+	    }
+	  else
+	    {
+	      removeDriveCommands(cmdp);
+	      sendsignal(MQTTData.getData(), sl, RoombaMode);
+	    }
 	}	
       //reseting datastring value
       MQTTData.resetData(); 	
       if(rc) {
-      std::cerr<<"--Reconnecting MQTT rc--" << rc << std::endl;
-      MQTTData.reconnect();
+	std::cerr<<"--Reconnecting MQTT rc--" << rc << std::endl;
+	MQTTData.reconnect();
 
+      }
     }
-  }
 
   std::cout << "The application ended" <<std::endl;
 

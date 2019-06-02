@@ -16,7 +16,11 @@ public:
 
   virtual ~MQTTDataHandler();
   std::string getData() const;
+  void sendMessage(std::string ms);
   void resetData();
+  void setMessage(std::string message);
+  void appendMessage(std::string message);
+  std::string getMessage();
 
 protected:
 
@@ -30,6 +34,7 @@ protected:
 
  private:
    std::string receivedData;
+   std::string message_;
    
 
 };

@@ -52,6 +52,17 @@ void MQTTDataHandler::on_message(const mosquitto_message *message)
   
 }
 
+void MQTTDataHandler::sendMessage(std::string ms)
+{
+  auto rc = publish(nullptr, MQTT_TOPIC_ROOMBA_INTERFACE.c_str(), ms.size(), ms.c_str(),MQTT_QoS_0);
+  
+  if(rc != MOSQ_ERR_SUCCESS)
+    {
+      on_log(1, mosquitto_strerror(rc));
+    }
+
+}
+
 void MQTTDataHandler::on_subscribe(int mid, int qos_count,
                                         const int *granted_qos)
 {
@@ -76,4 +87,19 @@ void MQTTDataHandler::resetData()
 {
   receivedData.clear();
   receivedData = "idle";
+}
+
+void MQTTDataHandler::setMessage(std::string message)
+{
+  message_ = message;
+}
+
+void MQTTDataHandler::appendMessage(std::string message)
+{
+  message_.append(message);
+}
+
+std::string MQTTDataHandler::getMessage()
+{
+  return message_;
 }

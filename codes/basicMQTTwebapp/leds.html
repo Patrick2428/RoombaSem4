@@ -28,7 +28,7 @@
         function initVars() {
             console.log("initVars");
             MQTT_device = "webapp";
-            MQTT_topic_root = "ESEiot/1819sep/WebApp";
+            MQTT_topic_root = "ESEiot/TeamFyre/roomba/controller";  
         }
 
         function mqtt_Connect_with_Broker() {
@@ -74,7 +74,7 @@
             document.getElementById("button2off").disabled = false;
             document.getElementById("button3on").disabled = false;
             document.getElementById("button3off").disabled = false;
-            MQTT_Client.subscribe("ESEiot/1819sep/WebApp/#");
+            MQTT_Client.subscribe("ESEiot/TeamFyre/roomba/controller/#");
         }
 
         // Called when the client loses its connection
@@ -95,7 +95,7 @@
                 " MQTT topic: " + "\"" + message.destinationName + "\"" +
                 " QoS: " + "\"" + message.qos + "\"" +
                 " Retained: " + "\"" + message.retained + "\"");
-            if (message.destinationName === MQTT_topic_root + "ledgreen") {
+            if (message.destinationName === MQTT_topic_root) {
                 if (message.payloadString === '1') {
                     $('#ledgreenO').attr('color', 'green');
                 } else {
@@ -104,7 +104,7 @@
                 rtt1 = (new Date()).getTime() - rtt1;
                 document.getElementById("rtt1").innerHTML = rtt1;
             }
-            if (message.destinationName === MQTT_topic_root + "ledyellow") {
+            if (message.destinationName === MQTT_topic_root) {
                 if (message.payloadString === '1') {
                     $('#ledyellowO').attr('color', 'yellow');
                 } else {
@@ -113,7 +113,7 @@
                 rtt2 = (new Date()).getTime() - rtt2;
                 document.getElementById("rtt2").innerHTML = rtt2;
             }
-            if (message.destinationName === MQTT_topic_root + "ledred") {
+            if (message.destinationName === MQTT_topic_root) {
                 if (message.payloadString === '1') {
                     $('#ledredO').attr('color', 'red');
                 } else {
@@ -137,7 +137,7 @@
             document.getElementById("txt_MQTT_Broker_URL").value =
                 "ws://broker.hivemq.com:8000/mqtt";
             document.getElementById("txt_MQTT_topicroot").value =
-                "ESEiot/1819sep/WebApp/" + MQTT_Client_ID + "/";
+                "ESEiot/TeamFyre/roomba/controller" + MQTT_Client_ID + "/";
 
             document.getElementById("button1on").disabled = true;
             document.getElementById("button1off").disabled = true;
@@ -157,21 +157,9 @@
             MQTT_Client_ID = document.getElementById("txt_MQTT_Client_ID").value;
         }
 
-        function led(color, msg) {
+        function led(msg) {
             var message = new Paho.MQTT.Message(msg);
-            message.destinationName = MQTT_topic_root + "led" + color;
-            if (color == 'green') {
-                rtt1 = (new Date()).getTime();
-                message.qos = 0;
-            }
-            if (color == 'yellow') {
-                rtt2 = (new Date()).getTime();
-                message.qos = 1;
-            }
-            if (color == 'red') {
-                rtt3 = (new Date()).getTime();
-                message.qos = 2;
-            }
+            message.destinationName = MQTT_topic_root;
             MQTT_Client.send(message);
             console.log(
                 "MQTT message send: " + "\"" + message.payloadString + "\"" +
@@ -227,14 +215,38 @@
                     <input type="text" class="form-control" id="txt_MQTT_topicroot">
                 </div>
             </div>
+
+         <hr>
+            <div class="form-group">
+                <label for="txt_MQTT_Subscribe_Topic" class="col-sm-2 control-label">MQTT Topic (Subscribe):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="txt_MQTT_Subscribe_Topic" placeholder="Type MQTT topic here...">
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary col-sm-4" onclick="mqtt_Subscribe_to_Topic();">Subscribe</button>
+                </div>
+            </div>
+
+        <hr>
+
+          <div class="form-group">
+                <label class="col-sm-2 control-label" for="txt_MQTT_Publish_Topic">MQTT topic (Publish):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="txt_MQTT_Publish_Topic" placeholder="Type MQTT topic here...">
+                </div>
+         <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary col-sm-4" onclick="mqtt_Publish_Topic();">Publish</button>
+                </div>
+            </div>
+        
             <hr>
         </form>
 
         <section id="pubsub" class="panel-body">
             <h2>Publishing and subscribing</h2>
             <p>
-                <input disabled type="button" class="btn btn-success" id="button1on" onclick='led("green", "1");' value=" on  " />
-                <input type="button" class="btn btn-danger" disabled id="button1off" onclick='led("green", "0");' value=" off " /> &rarr; Broker &rarr;
+                <input disabled type="button" class="btn btn-success" id="button1on" onclick='led("clean");' value=" clean  " />
+                <input type="button" class="btn btn-danger" disabled id="button1off" onclick='led("spot");' value=" spot " /> &rarr; Broker &rarr;
                 <font id="ledgreenO" size='6' bgcolor='grey' color='green'>
                     <b> O </b>
                 </font>
@@ -242,8 +254,8 @@
                 <span id="rtt1"></span> msec
             </p>
             <p>
-                <input type="button" class="btn btn-success" id="button2on" onclick='led("yellow", "1");' value=" on  " />
-                <input type="button" class="btn btn-danger" id="button2off" onclick='led("yellow", "0");' value=" off " /> &rarr; Broker &rarr;
+                <input type="button" class="btn btn-success" id="button2on" onclick='led("drive");' value=" drive  " />
+                <input type="button" class="btn btn-danger" id="button2off" onclick='led("dock");' value=" dock " /> &rarr; Broker &rarr;
                 <font id="ledyellowO" size='6' bgcolor='grey' color='yellow'>
                     <b> O </b>
                 </font>
@@ -251,8 +263,8 @@
                 <span id="rtt2"></span> msec
             </p>
             <p>
-                <input type="button" class="btn btn-success" id="button3on" onclick='led("red", "1");' value=" on " />
-                <input type="button" class="btn btn-danger" id="button3off" onclick='led("red", "0");' value=" off " /> &rarr; Broker &rarr;
+                <input type="button" class="btn btn-success" id="button3on" onclick='led("left");' value=" left " />
+                <input type="button" class="btn btn-danger" id="button3off" onclick='led("right");' value=" right " /> &rarr; Broker &rarr;
                 <font id="ledredO" size='6' bgcolor='grey' color='red'>
                     <b> O </b>
                 </font>
