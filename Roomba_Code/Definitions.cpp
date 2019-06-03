@@ -1,10 +1,12 @@
 #include "Definitions.h"
 
+///Functions adding commands to CommandProcessor class
+///Events linked to MQTT messages/commands are executed here
 using namespace std::chrono_literals;
 void addCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm, int &RoombaMode, MQTTDataHandler &MQTTData)
 {
  
- //Commands definitions
+ ///Commands definitions with lambda function implementations
   cmdp.addCommand("help", [&MQTTData, &RoombaMode](){
       RoombaMode = 0;
       MQTTData.setMessage("MODES: drive, clean, reset, dock, battle"); });
@@ -12,12 +14,9 @@ void addCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rota
   cmdp.addCommand("idle", [&MQTTData](){
       std::cout<<"Waiting for command"<<std::endl;
       MQTTData.setMessage("Idle mode: waiting for command");});
-   
-  cmdp.addCommand("drive", [&RoombaMode,&sl,&MQTTData](){RoombaMode = 1;
+  
+  cmdp.addCommand("drive", [&RoombaMode,&MQTTData](){RoombaMode = 1;
       std::cout << "Driving mode selected" <<std::endl;
-      std::this_thread::sleep_for(0.5s);
-      sl.write(playSong(2));
-      std::this_thread::sleep_for(0.5s);
       std::cout << "Enter driving direction" << std::endl;
       MQTTData.setMessage("Driving mode: waiting for direction");});
  
@@ -32,12 +31,15 @@ void addCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rota
   cmdp.addCommand("dock", [&RoombaMode, &MQTTData](){RoombaMode = 4;
       std::cout<<"device in dock mode" <<std::endl;
       MQTTData.setMessage("Dock mode: searching for docking station");});
-  
+
+  ///When playing and storing songs on the roomba some process time has to be implement before executing other commands
   cmdp.addCommand("battle", [&RoombaMode, &sl,&MQTTData](){RoombaMode = 5;
       sl.write(addSong(0));
-      std::this_thread::sleep_for(0.5s);
+      std::this_thread::sleep_for(0.2s);
       sl.write(addSong(1));
-      std::this_thread::sleep_for(0.5s);
+      std::this_thread::sleep_for(0.2s);
+      sl.write(addSong(2));
+      std::this_thread::sleep_for(0.2s);
       std::cout<<"device in battle mode" <<std::endl;
       MQTTData.setMessage("Battle mode: get ready for destruction");});
   
@@ -64,6 +66,7 @@ void addCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rota
 
 }
 
+///Drive commands added when in drive mode 
 void addDriveCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm, MQTTDataHandler &MQTTData)
 {
   cmdp.addCommand("straight", [&sl,&lm,&rm,&MQTTData](){

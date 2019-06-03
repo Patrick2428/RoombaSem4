@@ -3,7 +3,7 @@
 #include <iostream>
 #include <mosquittopp.h>
 #include <string>
-
+///MQTTDataHandler class member function implementation
 MQTTDataHandler::MQTTDataHandler(const std::string &data,
 				 const std::string &appname,
 				 const std::string &clientname,
@@ -24,6 +24,7 @@ MQTTDataHandler::~MQTTDataHandler()
   std::cout << "Disconnected from server" <<std::endl;
 }
 
+///function that subscribes to topic "ESEiot/TeamFyre/roomba/controller" to receive Commands/messages for roomba control
 void MQTTDataHandler::on_connect(int rc)
 {
   std::cout << "connected with rc = " << rc <<std::endl;
@@ -34,11 +35,13 @@ void MQTTDataHandler::on_connect(int rc)
    
 }
 
+///If the MQTT server disconnected 
 void MQTTDataHandler::on_disconnect(int rc)
 {
   std::cout << " disconnected with rc = " << rc << std::endl;
 }
 
+///Handling received message from subscribed topic "ESEiot/TeamFyre/roomba/controller"
 void MQTTDataHandler::on_message(const mosquitto_message *message)
 {
  
@@ -51,7 +54,7 @@ void MQTTDataHandler::on_message(const mosquitto_message *message)
     }
   
 }
-
+///Publish message to topic "ESEiot/TeamFyre/roomba/interface"
 void MQTTDataHandler::sendMessage(std::string ms)
 {
   auto rc = publish(nullptr, MQTT_TOPIC_ROOMBA_INTERFACE.c_str(), ms.size(), ms.c_str(),MQTT_QoS_0);
@@ -69,6 +72,7 @@ void MQTTDataHandler::on_subscribe(int mid, int qos_count,
   std::cout << "subscription succeeded" <<std::endl;
 }
 
+///logging MQTT connection description
 void MQTTDataHandler::on_log(int level, const char* str)
 {
   std::cout<<"level = " <<level << ": " << str << std::endl;

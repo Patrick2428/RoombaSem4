@@ -1,5 +1,6 @@
 #include "Definitions.h"
 
+///Main cpp file in which objects get initialised and main control is handled
 using namespace std::chrono_literals;
 
 volatile sig_atomic_t receivedSIGINT{false};
@@ -20,12 +21,12 @@ int main(int argc, char *argv[])
   int revision = 0;
   int RoombaMode = 0;
   CommandProcessor cmdp;
-  rotationMotor lm(50,20,20),rm(50,20,20);
+  rotationMotor lm(50,20,20), rm(50,20,20);
   
-  //Initialising serial connection
+  ///Initialising serial connection
   SerialLink sl {"/dev/ttyUSB0",
       static_cast<unsigned int>(Baud::ROOMBA_DEFAULT)};
-  //Initialising MQTT connection
+  ///Initialising MQTT connection
   MQTTDataHandler MQTTData("idle","RoombaController", "MQTTData", mqttBroker, mqttBrokerPort);
   
   std::cout << "The application started" << std::endl;
@@ -38,39 +39,39 @@ int main(int argc, char *argv[])
   mosqpp::lib_version(&major, &minor, &revision);
   std::cout << "MQTT version: " << major << '.' << minor << '.'
        << revision << std:: endl;
-
+  ///Set roomba into safe mode
   sl.write(startSafe());
-  sl.write(addSong(2));
   
-  
-  //Initialising Commands
+  ///Initialising Commands
   addCommands(cmdp, sl, lm, rm, RoombaMode,MQTTData);
   MQTTData.sendMessage( "Choose a mode: drive, clean, dock, battle or reset");
+  ///Executes first command - getData was set to idle
   cmdp.executeCommand(MQTTData.getData());
   MQTTData.sendMessage(MQTTData.getMessage());
 
-  //loop receiving signals  
+  ///loop receiving signals and executing commands
   while (!receivedSIGINT)
     {
       int rc{MQTTData.loop()};
-      
+      ///Once getData changes from idle to something else events can occur
       if(MQTTData.getData() != "idle")
 	{
 	  cmdp.executeCommand(MQTTData.getData());
 	  MQTTData.sendMessage(MQTTData.getMessage());
-	  
+	  ///When roomba is in drive state driveCommands are added and ready for execution
 	  if(RoombaMode == 1)
 	    {
 	      addDriveCommands(cmdp, sl, lm, rm, MQTTData);
 	      sendsignal(MQTTData.getData(), sl, RoombaMode);	      
 	    }
+	  ///Once roomba leaves drive mode the driveCommands are removed
 	  else
 	    {
 	      removeDriveCommands(cmdp);
 	      sendsignal(MQTTData.getData(), sl, RoombaMode);
 	    }
 	}	
-      //reseting datastring value
+      ///reseting datastring value to idle waiting for next command
       MQTTData.resetData(); 	
       if(rc) {
 	std::cerr<<"--Reconnecting MQTT rc--" << rc << std::endl;

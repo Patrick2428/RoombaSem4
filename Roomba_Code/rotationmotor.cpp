@@ -1,11 +1,14 @@
 #include "rotationmotor.h"
 #include <iostream>
+///Implementation of member functions of rotatioMotor class
 
+///Get RPM
 int16_t rotationMotor :: getRPM() const
 {
   return rpm;
 }
 
+///Increments rpm with data member incValue 
 void rotationMotor :: incRPM()
 {
   rpm += incValue;
@@ -17,6 +20,7 @@ void rotationMotor :: incRPM()
 
 }
 
+///Decrements rpm with data member decValue
 void rotationMotor :: decRPM()
 {
   rpm -= decValue;
@@ -27,6 +31,7 @@ void rotationMotor :: decRPM()
     }
 }
 
+///Get inc/dec values
 int16_t rotationMotor :: getincValue()const
 {
   return incValue;

@@ -1,6 +1,8 @@
 #ifndef COMMANDPROCESSOR_H_
 #define COMMANDPROCESSOR_H_
 
+///CommandProcessor class initialisiation for handeling commands and link them to serial Interface
+
 #include <map>
 #include <iostream>
 #include <functional>

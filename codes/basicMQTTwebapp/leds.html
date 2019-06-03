@@ -28,7 +28,7 @@
         function initVars() {
             console.log("initVars");
             MQTT_device = "webapp";
-            MQTT_topic_root = "ESEiot/TeamFyre/roomba/controller";  
+            MQTT_topic_root = "ESEiot/TeamFyre/roomba";  
         }
 
         function mqtt_Connect_with_Broker() {
@@ -74,7 +74,7 @@
             document.getElementById("button2off").disabled = false;
             document.getElementById("button3on").disabled = false;
             document.getElementById("button3off").disabled = false;
-            MQTT_Client.subscribe("ESEiot/TeamFyre/roomba/controller/#");
+            MQTT_Client.subscribe("ESEiot/TeamFyre/roomba/interface/#");
         }
 
         // Called when the client loses its connection
@@ -137,7 +137,7 @@
             document.getElementById("txt_MQTT_Broker_URL").value =
                 "ws://broker.hivemq.com:8000/mqtt";
             document.getElementById("txt_MQTT_topicroot").value =
-                "ESEiot/TeamFyre/roomba/controller" + MQTT_Client_ID + "/";
+                "ESEiot/TeamFyre/roomba" + MQTT_Client_ID + "/";
 
             document.getElementById("button1on").disabled = true;
             document.getElementById("button1off").disabled = true;

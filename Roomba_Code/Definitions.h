@@ -1,6 +1,8 @@
 #ifndef DEFINITIONS_H_
 #define DEFINITIONS_H_
 
+///Include file with Command function definitions 
+
 #include "AppInfo.h"
 #include "Config.h"
 #include "MQTTDataHandler.h"

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "CommandProcessor.h"
 
+///CommandProcessor class member functions to handle commands 
 
 CommandProcessor::CommandProcessor()
 {
