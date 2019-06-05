@@ -1,3 +1,6 @@
+/** @file */
+///\brief
+
 #include "Definitions.h"
 
 ///Main cpp file in which objects get initialised and main control is handled
@@ -12,7 +15,7 @@ void handleSIGINT(int /* s */)
 
 int main(int argc, char *argv[])
 {
-  //definitions
+  //Initialisation
   std::string mqttBroker{MQTT_LOCAL_BROKER};
   std::string message , command;
   int mqttBrokerPort{MQTT_LOCAL_BROKER_PORT};

@@ -9,7 +9,15 @@ CommandProcessor::CommandProcessor()
 
 void CommandProcessor::addCommand(const std::string &command,CommandProcessor::commandfunction_t cf)
 {
-    commands_[command] = cf;
+  auto p = commands_.find(command);
+  if (p == end(commands_))
+    {
+      commands_[command] = cf;
+    }
+  else
+    {
+      //If a command already exists it shouldn't be added
+    }
 }
 
 void CommandProcessor::executeCommand(const std::string &command)
