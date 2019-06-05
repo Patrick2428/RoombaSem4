@@ -39,7 +39,8 @@ std::vector<uint8_t>dock()
 ///Sends a Song to the Roomba and stores it 
 std::vector<uint8_t>addSong(int sel)
 {
-  if (sel == 0)
+  //final Countdown
+  /*if (sel == 0)
     {
       ///Mode, song nr, nr of notes, note, duration 1/64...
       return {MODE_SONG, 0, 15, 73, 10, 71, 10, 73, 20, 66, 50, 0, 20, 74, 10, 73, 10, 74, 17, 73, 17, 71, 50, 0, 20, 74, 10, 73, 10, 74, 20, 66, 50};
@@ -51,6 +52,22 @@ std::vector<uint8_t>addSong(int sel)
   else if(sel == 2)
     {
       return {MODE_SONG, 2, 12, 73, 17, 71, 17, 69, 17, 68, 17, 66, 20, 74, 20, 73, 50, 74, 10, 73, 10, 71, 10, 73, 14, 73, 64};
+      }*/
+  //GOT Theme song
+  if (sel == 0)
+    {
+      ///Mode, song nr, nr of notes, note, duration 1/64...
+      return {MODE_SONG, 0, 13, 67, 20, 60, 20, 63, 15, 65, 15, 67, 20, 60, 20, 63, 15, 65, 15, 67, 20, 60, 20, 63, 15, 65, 15, 67, 20};
+    }
+  
+  else if(sel == 1)
+    {
+      return{MODE_SONG, 1, 12, 60, 20, 63, 15, 65, 15, 67, 20, 60, 20, 64, 15, 65, 15, 67, 20, 60, 20, 64, 15, 65, 15, 67, 20};
+    }
+  
+  else if(sel == 2)
+    {
+      return {MODE_SONG, 2, 12, 60, 20, 64, 15, 65, 15, 55, 30, 48, 30, 51, 15, 53, 15, 55, 15, 48, 30, 51, 10, 50, 10, 48, 30};
     }
 }
 ///executes/playes stored song on the Roomba
