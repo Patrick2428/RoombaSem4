@@ -21,14 +21,11 @@
         var MQTT_Topic = "";
         var MQTT_Client = "";
         var MQTT_topic_root = "";
-        var rtt1 = "??";
-        var rtt2 = "??";
-        var rtt3 = "??";
 
         function initVars() {
             console.log("initVars");
             MQTT_device = "webapp";
-            MQTT_topic_root = "ESEiot/TeamFyre/roomba";  
+            MQTT_topic_root = "ESEiot/TeamFyre/roomba/controller";  
         }
 
         function mqtt_Connect_with_Broker() {
@@ -60,8 +57,24 @@
             MQTT_Client.connect(options);
         }
 
+        // Subscribe to MQTT Topic
+        function mqtt_Subscribe_to_Topic() {
+            MQTT_Subscribe_Topic =
+                document.getElementById("txt_MQTT_Subscribe_Topic").value;
+            if (Boolean(MQTT_Subscribe_Topic)) {
+                MQTT_Client.subscribe(MQTT_Subscribe_Topic);
+                Set_New_Console_Msg("Subscribed to MQTT topic: " + "\"" +
+                    MQTT_Subscribe_Topic + "\"");
+            } else {
+                Set_New_Console_Msg("ERROR: not subscribed, MQTT topic is empty string");
+            }
+        }
+
         // Called when the client connects
         function onConnect() {
+            // Once a connection has been made, make a subscription and send a message.
+            Set_New_Console_Msg("Connected with MQTT Broker: " + "\"" +
+                document.getElementById("txt_MQTT_Broker_URL").value + "\"");
             // Once a connection has been made, make a subscription.
             console.log("Connected to " + WebSocket_MQTT_Broker_URL);
             document.getElementById("btn_Connect_to_Broker").disabled = true;
@@ -74,13 +87,12 @@
             document.getElementById("button2off").disabled = false;
             document.getElementById("button3on").disabled = false;
             document.getElementById("button3off").disabled = false;
-            MQTT_Client.subscribe("ESEiot/TeamFyre/roomba/interface/#");
         }
 
         // Called when the client loses its connection
         function onConnectionLost(responseObject) {
             if (responseObject.errorCode !== 0) {
-                console.log("ERROR: connection lost with MQTT Broker: " +
+               console.log("ERROR: connection lost with MQTT Broker: " +
                     "\"" + responseObject.errorMessage + "\"");
                 document.getElementById("btn_Connect_to_Broker").disabled = false;
                 document.getElementById("txt_MQTT_Broker_URL").disabled = false;
@@ -90,43 +102,8 @@
 
         // Called when a message arrives
         function onMessageArrived(message) {
-            console.log(
-                "MQTT message recieved: " + "\"" + message.payloadString + "\"" +
-                " MQTT topic: " + "\"" + message.destinationName + "\"" +
-                " QoS: " + "\"" + message.qos + "\"" +
-                " Retained: " + "\"" + message.retained + "\"");
-            if (message.destinationName === MQTT_topic_root) {
-                if (message.payloadString === '1') {
-                    $('#ledgreenO').attr('color', 'green');
-                } else {
-                    $('#ledgreenO').attr('color', 'grey');
-                }
-                rtt1 = (new Date()).getTime() - rtt1;
-                document.getElementById("rtt1").innerHTML = rtt1;
-            }
-            if (message.destinationName === MQTT_topic_root) {
-                if (message.payloadString === '1') {
-                    $('#ledyellowO').attr('color', 'yellow');
-                } else {
-                    $('#ledyellowO').attr('color', 'grey');
-                }
-                rtt2 = (new Date()).getTime() - rtt2;
-                document.getElementById("rtt2").innerHTML = rtt2;
-            }
-            if (message.destinationName === MQTT_topic_root) {
-                if (message.payloadString === '1') {
-                    $('#ledredO').attr('color', 'red');
-                } else {
-                    $('#ledredO').attr('color', 'grey');
-                }
-                rtt3 = (new Date()).getTime() - rtt3;
-                document.getElementById("rtt3").innerHTML = rtt3;
-            }
-            if (message.destinationName === MQTT_topic_root + "temperature") {
-                document.getElementById('outputArea1').style.border = "solid red";
-                document.getElementById('outputArea1').innerHTML = message.payloadString;
-                setTimeout(resetTemperatureBorder, 5000);
-            }
+            Set_New_Console_Msg(
+                "MQTT message Received: " + "\"" + message.payloadString + "\"");
         }
 
         // Document Ready Event
@@ -137,7 +114,7 @@
             document.getElementById("txt_MQTT_Broker_URL").value =
                 "ws://broker.hivemq.com:8000/mqtt";
             document.getElementById("txt_MQTT_topicroot").value =
-                "ESEiot/TeamFyre/roomba" + MQTT_Client_ID + "/";
+                "ESEiot/TeamFyre/roomba/controller";
 
             document.getElementById("button1on").disabled = true;
             document.getElementById("button1off").disabled = true;
@@ -145,9 +122,6 @@
             document.getElementById("button2off").disabled = true;
             document.getElementById("button3on").disabled = true;
             document.getElementById("button3off").disabled = true;
-            document.getElementById("rtt1").innerHTML = rtt1;
-            document.getElementById("rtt2").innerHTML = rtt2;
-            document.getElementById("rtt3").innerHTML = rtt3;
         })
 
         // Genarates randomly MQTT client ID
@@ -160,12 +134,38 @@
         function led(msg) {
             var message = new Paho.MQTT.Message(msg);
             message.destinationName = MQTT_topic_root;
-            MQTT_Client.send(message);
-            console.log(
-                "MQTT message send: " + "\"" + message.payloadString + "\"" +
-                " MQTT topic: " + "\"" + message.destinationName + "\"" +
-                " QoS: " + "\"" + message.qos + "\"" +
-                " Retained: " + "\"" + message.retained + "\"");
+            if (Boolean(message.destinationName)) {
+                MQTT_Client.send(message);
+                Set_New_Console_Msg("MQTT message send: " + "\"" + message.payloadString + "\"");
+            }
+            else {
+                Set_New_Console_Msg("ERROR: not published, MQTT topic is empty string");
+            }
+        }
+
+        // Set MQTT Messages to TextArea
+        function Set_New_Console_Msg(text) {
+            document.getElementById("txtAr_Console").value =
+                document.getElementById("txtAr_Console").value +
+                get_Fromatted_Time().toString() +
+                "   " + text + "\n";
+            document.getElementById("txtAr_Console").scrollTop =
+                document.getElementById("txtAr_Console").scrollHeight;
+        }
+        // Clear console
+        function clear_Console() {
+            document.getElementById("txtAr_Console").value = "";
+        }
+
+        // Get Formatted time in Hour:Minute:Seconds AM/PM format
+        function get_Fromatted_Time() {
+            var dt = new Date();
+            var hours = dt.getHours() == 0 ? "12" : dt.getHours() > 12 ? dt.getHours() - 12 : dt.getHours();
+            var minutes = (dt.getMinutes() < 10 ? "0" : "") + dt.getMinutes();
+            var seconds = (dt.getSeconds() < 10 ? "0" : "") + dt.getSeconds();
+            var ampm = dt.getHours() < 12 ? "AM" : "PM";
+            var formattedTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+            return formattedTime;
         }
 
         function resetTemperatureBorder() {
@@ -176,114 +176,113 @@
 </head>
 
 <body onload="initVars();">
-    <article>
-        <header>
-            <h1>&nbsp; IoT MQTT leds and sensors</h1>
-            <ul class="nav nav-tabs">
-                <li>
-                    <a href="index.html" target="_blank1">About</a>
-                </li>
-                <li class="active">
-                    <a href="leds.html" target="_self">Leds and sensors</a>
-                </li>
-                <li>
-                    <a href="pubsub.html" target="_blank3">Pub Sub</a>
-                </li>
-            </ul>
-        </header>
-        <hr>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="txt_MQTT_Broker_URL" class="col-sm-2 control-label">WebSocket MQTT Broker URL:</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="txt_MQTT_Broker_URL">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="txt_MQTT_Client_ID" class="col-sm-2 control-label">MQTT Client ID:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="txt_MQTT_Client_ID">
-                </div>
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-success col-sm-4" id="btn_Connect_to_Broker" onclick="mqtt_Connect_with_Broker();">Connect</button>
-                </div>
-            </div>
-            <hr>
-            <div class="form-group">
-                <label for="txt_MQTT_topicroot" class="col-sm-2 control-label">MQTT topic root:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="txt_MQTT_topicroot">
-                </div>
-            </div>
+  <article>
+    <header>
+      <h1>&nbsp; IoT MQTT leds and sensors</h1>
+      <ul class="nav nav-tabs">
+        <li>
+          <a href="index.html" target="_blank1">About</a>
+        </li>
+        <li class="active">
+          <a href="leds.html" target="_self">Leds and sensors</a>
+        </li>
+        <li>
+          <a href="pubsub.html" target="_blank3">Pub Sub</a>
+        </li>
+      </ul>
+    </header>
+    <hr>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="txt_MQTT_Broker_URL" class="col-sm-2 control-label">WebSocket MQTT Broker URL:</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="txt_MQTT_Broker_URL">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="txt_MQTT_Client_ID" class="col-sm-2 control-label">MQTT Client ID:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="txt_MQTT_Client_ID">
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-success col-sm-4" id="btn_Connect_to_Broker" onclick="mqtt_Connect_with_Broker();">Connect</button>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label for="txt_MQTT_topicroot" class="col-sm-2 control-label">MQTT topic (Publish):</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="txt_MQTT_topicroot">
+        </div>
+      </div>
 
-         <hr>
-            <div class="form-group">
-                <label for="txt_MQTT_Subscribe_Topic" class="col-sm-2 control-label">MQTT Topic (Subscribe):</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="txt_MQTT_Subscribe_Topic" placeholder="Type MQTT topic here...">
-                </div>
-                <div class="col-sm-4">
-                    <button type="button" class="btn btn-primary col-sm-4" onclick="mqtt_Subscribe_to_Topic();">Subscribe</button>
-                </div>
-            </div>
-
-        <hr>
-
-          <div class="form-group">
-                <label class="col-sm-2 control-label" for="txt_MQTT_Publish_Topic">MQTT topic (Publish):</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="txt_MQTT_Publish_Topic" placeholder="Type MQTT topic here...">
-                </div>
-         <div class="col-sm-4">
-                    <button type="button" class="btn btn-primary col-sm-4" onclick="mqtt_Publish_Topic();">Publish</button>
-                </div>
-            </div>
+      <hr>
+      <div class="form-group">
+        <label for="txt_MQTT_Subscribe_Topic" class="col-sm-2 control-label">MQTT Topic (Subscribe):</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="txt_MQTT_Subscribe_Topic" placeholder="Type MQTT topic here...">
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary col-sm-4" onclick="mqtt_Subscribe_to_Topic();">Subscribe</button>
+        </div>
         
-            <hr>
-        </form>
+        <hr>
+    </form>
 
-        <section id="pubsub" class="panel-body">
-            <h2>Publishing and subscribing</h2>
-            <p>
-                <input disabled type="button" class="btn btn-success" id="button1on" onclick='led("clean");' value=" clean  " />
-                <input type="button" class="btn btn-danger" disabled id="button1off" onclick='led("spot");' value=" spot " /> &rarr; Broker &rarr;
-                <font id="ledgreenO" size='6' bgcolor='grey' color='green'>
-                    <b> O </b>
-                </font>
-                &nbsp; &nbsp; Round-trip time =
-                <span id="rtt1"></span> msec
-            </p>
-            <p>
-                <input type="button" class="btn btn-success" id="button2on" onclick='led("drive");' value=" drive  " />
-                <input type="button" class="btn btn-danger" id="button2off" onclick='led("dock");' value=" dock " /> &rarr; Broker &rarr;
-                <font id="ledyellowO" size='6' bgcolor='grey' color='yellow'>
-                    <b> O </b>
-                </font>
-                &nbsp; &nbsp; Round-trip time =
-                <span id="rtt2"></span> msec
-            </p>
-            <p>
-                <input type="button" class="btn btn-success" id="button3on" onclick='led("left");' value=" left " />
-                <input type="button" class="btn btn-danger" id="button3off" onclick='led("right");' value=" right " /> &rarr; Broker &rarr;
-                <font id="ledredO" size='6' bgcolor='grey' color='red'>
-                    <b> O </b>
-                </font>
-                &nbsp; &nbsp; Round-trip time =
-                <span id="rtt3"></span> msec
-            </p>
-            <p>
-                Broker &rarr; Temperature = &nbsp;
-                <textarea name="outputArea1" id="outputArea1" rows=1 cols=10 style="resize:none" onClick="this.select();" readonly="yes">???</textarea>
-            </p>
-            <p>
-                Broker &rarr; &nbsp; &nbsp; &nbsp; Humidity = &nbsp;
-                <textarea name="outputArea2" id="outputArea2" rows=1 cols=10 style="resize:none" onClick="this.select();" readonly="yes">???</textarea>
-            </p>
-        </section>
-    </article>
-    <footer>
-        <h2>Embedded Systems Engineering &nbsp;</h2>
-    </footer>
+    <section id="pubsub" class="panel-body">
+      <h2>Publishing and subscribing</h2>
+      <p>
+        <input  type="button" class="btn btn-success" id="button1on" onclick='led("clean");' value=" clean " />
+        <input type="button" class="btn btn-danger" id="button1off" onclick='led("spot");' value=" spot " />
+        <input type="button" class="btn btn-success" id="button1on" onclick='led("incrpm");' value=" incrpm " />
+        <input type="button" class="btn btn-danger" id="button1off" onclick='led("decrpm");' value=" decrpm " />
+        <input type="button" class="btn btn-success" id="button1on" onclick='led("reset");' value=" reset " />
+        <input type="button" class="btn btn-danger" id="button1off" onclick='led("help");' value=" help " /> &rarr;
+        <font id="ledgreenO" size='6' bgcolor='grey' color='green'>
+          <b> O </b>
+        </font>
+      </p>
+      <p>
+        <input type="button" class="btn btn-success" id="button2on" onclick='led("drive");' value=" drive " />
+        <input type="button" class="btn btn-danger" id="button2off" onclick='led("dock");' value=" dock " />
+        <input type="button" class="btn btn-success" id="button2on" onclick='led("battle");' value=" battle " />
+        <input type="button" class="btn btn-danger" id="button2off" onclick='led("stop");' value=" stop " /> &rarr;
+        <font id="ledyellowO" size='6' bgcolor='grey' color='yellow'>
+          <b> O </b>
+        </font>
+      </p>
+      <p>
+        <input type="button" class="btn btn-success" id="button3on" onclick='led("straight");' value=" straight " />
+        <input type="button" class="btn btn-danger" id="button3off" onclick='led("reverse");' value=" reverse " />
+        <input type="button" class="btn btn-success" id="button3on" onclick='led("left");' value=" left " />
+        <input type="button" class="btn btn-danger" id="button3off" onclick='led("right");' value=" right " /> &rarr;
+        <font id="ledredO" size='6' bgcolor='grey' color='red'>
+          <b> O </b>
+        </font>
+      </p>
+      
+      <hr>
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="txtAr_Console">Message from Roomba:</label>
+          <div class="col-sm-9">
+            <textarea ype="textarea" class="form-control" rows="12" cols="100" id="txtAr_Console"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="btn_Clear_Console"></label>
+          <div class="col-sm-4">
+            <button type="button" id="btn_Clear_Console" class="btn btn-warning col-sm-4" onclick="clear_Console();">Clear console</button>
+          </div>
+        </div>
+      </form>
+
+    </section>
+  </article>
+  <footer>
+    <h2>Embedded Systems Engineering &nbsp;</h2>
+  </footer>
 </body>
 
 </html>
