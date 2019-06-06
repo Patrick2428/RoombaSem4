@@ -67,9 +67,19 @@ std::vector<uint8_t>addSong(int sel)
   
   else if(sel == 2)
     {
-      return {MODE_SONG, 2, 12, 60, 20, 64, 15, 65, 15, 55, 30, 48, 30, 51, 15, 53, 15, 55, 15, 48, 30, 51, 10, 50, 10, 48, 30};
+      return {MODE_SONG, 2, 12, 60, 20, 64, 15, 65, 15, 55, 30, 48, 30, 51, 15, 53, 15, 55, 20, 48, 30, 51, 15, 53, 15, 62, 20};
     }
+  else if(sel == 3)
+    {
+      return {MODE_SONG, 3, 14, 55, 20, 58, 15, 60, 15, 62, 15, 55, 20, 58, 50, 60, 15, 62, 15, 55, 20, 58, 15, 60, 15, 62, 15, 55, 20, 58, 15};
+    }
+  else if(sel == 4)
+    {
+      return {MODE_SONG, 4, 9, 53, 30, 46, 30, 51, 15, 50, 15, 53, 20, 46, 30, 51, 15, 50, 15, 48, 20};
+    }
+  
 }
+  
 ///executes/playes stored song on the Roomba
 std::vector<uint8_t>playSong(int nr)
 {
