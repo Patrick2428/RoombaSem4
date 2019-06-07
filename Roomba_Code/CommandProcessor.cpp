@@ -1,7 +1,7 @@
+/** @file */
+///\brief CommandProcessor class member functions to handle commands 
 #include <iostream>
 #include "CommandProcessor.h"
-
-///CommandProcessor class member functions to handle commands 
 
 CommandProcessor::CommandProcessor()
 {

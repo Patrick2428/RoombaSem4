@@ -45,12 +45,16 @@ void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep)
 
     case 5:
       ///battle mode -- plays the final countdown on the roomba
+      //std::this_thread::sleep_for(1s);
       slp.write(playSong(0));
-      std::this_thread::sleep_for(3.65s);
+      std::this_thread::sleep_for(3.7s);
       slp.write(playSong(1));
-      std::this_thread::sleep_for(3.3s);
+      std::this_thread::sleep_for(4s);
       slp.write(playSong(2));
-      std::this_thread::sleep_for(3s);     
+      std::this_thread::sleep_for(4s);
+      slp.write(playSong(3));
+      std::this_thread::sleep_for(5s);
+      slp.write(playSong(4));
       break;
 
     default:

@@ -1,9 +1,8 @@
 /** @file */
-///\brief
+///\brief Main cpp file in which objects get initialised and main control is handled
 
 #include "Definitions.h"
 
-///Main cpp file in which objects get initialised and main control is handled
 using namespace std::chrono_literals;
 
 volatile sig_atomic_t receivedSIGINT{false};
@@ -47,7 +46,7 @@ int main(int argc, char *argv[])
   
   ///Initialising Commands
   addCommands(cmdp, sl, lm, rm, RoombaMode,MQTTData);
-  MQTTData.sendMessage( "Choose a mode: drive, clean, dock, battle or reset");
+  MQTTData.sendMessage( "Choose a mode from the button selection");
   ///Executes first command - getData was set to idle
   cmdp.executeCommand(MQTTData.getData());
   MQTTData.sendMessage(MQTTData.getMessage());

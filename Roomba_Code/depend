@@ -2,8 +2,8 @@ statemachine.o: statemachine.cpp statemachine.h \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
  rotationmotor.h CommandProcessor.h MQTTDataHandler.h \
  OpenInterfaceConfig.h
-Definitions.o: Definitions.cpp Definitions.h AppInfo.h Config.h \
- MQTTconfig.h MQTTDataHandler.h OpenInterfaceConfig.h \
+CommandProcessorInit.o: CommandProcessorInit.cpp Definitions.h AppInfo.h \
+ Config.h MQTTconfig.h MQTTDataHandler.h OpenInterfaceConfig.h \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
  statemachine.h rotationmotor.h CommandProcessor.h
 CommandProcessor.o: CommandProcessor.cpp CommandProcessor.h \
