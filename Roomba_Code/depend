@@ -13,6 +13,10 @@ MQTTDataHandler.o: MQTTDataHandler.cpp MQTTDataHandler.h Config.h \
 OpenInterfaceConfig.o: OpenInterfaceConfig.cpp OpenInterfaceConfig.h
 rotationmotor.o: rotationmotor.cpp rotationmotor.h
 MQTTconfig.o: MQTTconfig.cpp MQTTconfig.h
+SenseHatcommand.o: SenseHatcommand.cpp Definitions.h AppInfo.h Config.h \
+ MQTTconfig.h MQTTDataHandler.h OpenInterfaceConfig.h \
+ ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \
+ statemachine.h rotationmotor.h CommandProcessor.h
 main.o: main.cpp Definitions.h AppInfo.h Config.h MQTTconfig.h \
  MQTTDataHandler.h OpenInterfaceConfig.h \
  ../codes/MQTT-SenseHAT-Utils/_libUtils/SerialLink/SerialLink.h \

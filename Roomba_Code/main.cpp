@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
 	{
 	  cmdp.executeCommand(MQTTData.getData());
 	  MQTTData.sendMessage(MQTTData.getMessage());
+	  printOnSenseHat(MQTTData);
 	  ///When roomba is in drive state driveCommands are added and ready for execution
 	  if(RoombaMode == 1)
 	    {
