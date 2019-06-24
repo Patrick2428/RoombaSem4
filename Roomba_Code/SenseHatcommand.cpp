@@ -1,3 +1,6 @@
+/** @file */
+///\brief Sensehat function
+///Executes the sense hat python codes by forking and using execlp()
 #include "Definitions.h"
 
 void printOnSenseHat(MQTTDataHandler &MQTTData)

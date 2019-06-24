@@ -1,6 +1,6 @@
+/** @file */
+///\brief Serial Communication function implementations
 #include "OpenInterfaceConfig.h"
-
-///Serial Communication function implementations\
 
 ///Sends driveDirect command to roomba (Velocities in mm/sec) for driving straight
 std::vector<uint8_t> driveDirect(int16_t rightVelocity, int16_t leftVelocity)

@@ -1,3 +1,5 @@
+/** @file */
+///\brief MQTT config hostname
 #include "MQTTconfig.h"
 #include <unistd.h>
 

@@ -67,7 +67,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Rotation Motor class to control the Speed of the Roomba motors.  
+<p>rotation motor class init for controlling roomba rotation motors  
  <a href="classrotationMotor.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="rotationmotor_8h_source.html">rotationmotor.h</a>&gt;</code></p>
@@ -75,8 +75,6 @@ $(function() {
 Collaboration diagram for rotationMotor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrotationMotor__coll__graph.png" border="0" usemap="#rotationMotor_coll__map" alt="Collaboration graph"/></div>
-<map name="rotationMotor_coll__map" id="rotationMotor_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -86,26 +84,66 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a66c21ecfd5a852172d593cde4759dc77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialise the RPM and the inc/dec values. <br /></td></tr>
 <tr class="separator:a66c21ecfd5a852172d593cde4759dc77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d3b655912765ebeef0d7cd0728ed1f4"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a8d3b655912765ebeef0d7cd0728ed1f4">getRPM</a> () const</td></tr>
-<tr class="memdesc:a8d3b655912765ebeef0d7cd0728ed1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters and setters for RPM and inc/dec values.  <a href="#a8d3b655912765ebeef0d7cd0728ed1f4">More...</a><br /></td></tr>
+<tr class="memdesc:a8d3b655912765ebeef0d7cd0728ed1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the value of the current rpm  <a href="#a8d3b655912765ebeef0d7cd0728ed1f4">More...</a><br /></td></tr>
 <tr class="separator:a8d3b655912765ebeef0d7cd0728ed1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66be5e19c68bfd0aff50e62344c9cde9"><td class="memItemLeft" align="right" valign="top"><a id="a66be5e19c68bfd0aff50e62344c9cde9"></a>
-int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a66be5e19c68bfd0aff50e62344c9cde9">getincValue</a> () const</td></tr>
-<tr class="memdesc:a66be5e19c68bfd0aff50e62344c9cde9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get inc/dec values. <br /></td></tr>
+<tr class="memitem:a66be5e19c68bfd0aff50e62344c9cde9"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a66be5e19c68bfd0aff50e62344c9cde9">getincValue</a> () const</td></tr>
+<tr class="memdesc:a66be5e19c68bfd0aff50e62344c9cde9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the increment value used  <a href="#a66be5e19c68bfd0aff50e62344c9cde9">More...</a><br /></td></tr>
 <tr class="separator:a66be5e19c68bfd0aff50e62344c9cde9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a638616661a500e6c55671d1cde1b3839"><td class="memItemLeft" align="right" valign="top"><a id="a638616661a500e6c55671d1cde1b3839"></a>
-int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>getdecValue</b> () const</td></tr>
+int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a638616661a500e6c55671d1cde1b3839">getdecValue</a> () const</td></tr>
+<tr class="memdesc:a638616661a500e6c55671d1cde1b3839"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the decrement value used <br /></td></tr>
 <tr class="separator:a638616661a500e6c55671d1cde1b3839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c46c229cd2d6c201c6e8f10853fffe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a7c46c229cd2d6c201c6e8f10853fffe9">incRPM</a> ()</td></tr>
-<tr class="memdesc:a7c46c229cd2d6c201c6e8f10853fffe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">member functions to increment and decrement the rotation of the motors with initialised values  <a href="#a7c46c229cd2d6c201c6e8f10853fffe9">More...</a><br /></td></tr>
+<tr class="memdesc:a7c46c229cd2d6c201c6e8f10853fffe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the rpm value.  <a href="#a7c46c229cd2d6c201c6e8f10853fffe9">More...</a><br /></td></tr>
 <tr class="separator:a7c46c229cd2d6c201c6e8f10853fffe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ee8e5b9dfff5b1412c38ad05a3a75f9"><td class="memItemLeft" align="right" valign="top"><a id="a5ee8e5b9dfff5b1412c38ad05a3a75f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a5ee8e5b9dfff5b1412c38ad05a3a75f9">decRPM</a> ()</td></tr>
-<tr class="memdesc:a5ee8e5b9dfff5b1412c38ad05a3a75f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements rpm with data member decValue. <br /></td></tr>
+<tr class="memitem:a5ee8e5b9dfff5b1412c38ad05a3a75f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrotationMotor.html#a5ee8e5b9dfff5b1412c38ad05a3a75f9">decRPM</a> ()</td></tr>
+<tr class="memdesc:a5ee8e5b9dfff5b1412c38ad05a3a75f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the rpm value.  <a href="#a5ee8e5b9dfff5b1412c38ad05a3a75f9">More...</a><br /></td></tr>
 <tr class="separator:a5ee8e5b9dfff5b1412c38ad05a3a75f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Rotation Motor class to control the Speed of the Roomba motors. </p>
+<div class="textblock"><p>rotation motor class init for controlling roomba rotation motors </p>
+<p>Rotation Motor class to control the Speed of the Roomba motors </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5ee8e5b9dfff5b1412c38ad05a3a75f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee8e5b9dfff5b1412c38ad05a3a75f9">&#9670;&nbsp;</a></span>decRPM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rotationMotor::decRPM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrements the rpm value. </p>
+<p>Decrements rpm with data member decValue. </p>
+
+</div>
+</div>
+<a id="a66be5e19c68bfd0aff50e62344c9cde9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66be5e19c68bfd0aff50e62344c9cde9">&#9670;&nbsp;</a></span>getincValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t rotationMotor::getincValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>returns the increment value used </p>
+<p>Get inc/dec values. </p>
+
+</div>
+</div>
 <a id="a8d3b655912765ebeef0d7cd0728ed1f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d3b655912765ebeef0d7cd0728ed1f4">&#9670;&nbsp;</a></span>getRPM()</h2>
 
@@ -121,9 +159,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Getters and setters for RPM and inc/dec values. </p>
-<p>Implementation of member functions of rotatioMotor class.</p>
-<p>Get RPM </p>
+<p>returns the value of the current rpm </p>
+<p>rotationmotor member functions</p>
+<p>Implementation of member functions of rotatioMotor class Get RPM </p>
 
 </div>
 </div>
@@ -142,14 +180,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>member functions to increment and decrement the rotation of the motors with initialised values </p>
+<p>Increments the rpm value. </p>
 <p>Increments rpm with data member incValue. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="rotationmotor_8h_source.html">rotationmotor.h</a></li>
-<li>/home/patrick/SE_Roomba/Roomba_Code/rotationmotor.cpp</li>
+<li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="rotationmotor_8cpp.html">rotationmotor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

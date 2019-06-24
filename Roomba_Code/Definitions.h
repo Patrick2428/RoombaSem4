@@ -35,7 +35,7 @@ void addCommands (CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rot
 void addDriveCommands(CommandProcessor &cmdp, SerialLink &sl, rotationMotor &lm, rotationMotor &rm, MQTTDataHandler &MQTTData);
 ///Init removeDriveCommand function
 void removeDriveCommands(CommandProcessor &cmdp);
-
+///Function that forks the process and calls the Sense hat python code using execlp()
 void printOnSenseHat(MQTTDataHandler &MQTTData);
   
 

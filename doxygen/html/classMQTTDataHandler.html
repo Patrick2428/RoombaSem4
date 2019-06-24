@@ -73,15 +73,11 @@ $(function() {
 Inheritance diagram for MQTTDataHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMQTTDataHandler__inherit__graph.png" border="0" usemap="#MQTTDataHandler_inherit__map" alt="Inheritance graph"/></div>
-<map name="MQTTDataHandler_inherit__map" id="MQTTDataHandler_inherit__map">
-</map>
 </div>
 <div class="dynheader">
 Collaboration diagram for MQTTDataHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMQTTDataHandler__coll__graph.png" border="0" usemap="#MQTTDataHandler_coll__map" alt="Collaboration graph"/></div>
-<map name="MQTTDataHandler_coll__map" id="MQTTDataHandler_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -115,25 +111,24 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getMessage</b>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a19f71fb2aa286e1649429011537d1c31"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a19f71fb2aa286e1649429011537d1c31">on_connect</a> (int rc) override</td></tr>
-<tr class="memdesc:a19f71fb2aa286e1649429011537d1c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual functions supplied by mosquittopp.h for handling MQTT connections  <a href="#a19f71fb2aa286e1649429011537d1c31">More...</a><br /></td></tr>
+<tr class="memdesc:a19f71fb2aa286e1649429011537d1c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">note virtual functions supplied by mosquittopp.h for handling MQTT connections  <a href="#a19f71fb2aa286e1649429011537d1c31">More...</a><br /></td></tr>
 <tr class="separator:a19f71fb2aa286e1649429011537d1c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f48d8d0251a77ae21156b143f2b8ad7"><td class="memItemLeft" align="right" valign="top"><a id="a1f48d8d0251a77ae21156b143f2b8ad7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a1f48d8d0251a77ae21156b143f2b8ad7">on_disconnect</a> (int rc) override</td></tr>
-<tr class="memdesc:a1f48d8d0251a77ae21156b143f2b8ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the MQTT server disconnected. <br /></td></tr>
+<tr class="memitem:a1f48d8d0251a77ae21156b143f2b8ad7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a1f48d8d0251a77ae21156b143f2b8ad7">on_disconnect</a> (int rc) override</td></tr>
+<tr class="memdesc:a1f48d8d0251a77ae21156b143f2b8ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warning message when disconnected from the broker.  <a href="#a1f48d8d0251a77ae21156b143f2b8ad7">More...</a><br /></td></tr>
 <tr class="separator:a1f48d8d0251a77ae21156b143f2b8ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa926167334fd02c0a51c5c20a628eb3b"><td class="memItemLeft" align="right" valign="top"><a id="aa926167334fd02c0a51c5c20a628eb3b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#aa926167334fd02c0a51c5c20a628eb3b">on_message</a> (const struct mosquitto_message *message) override</td></tr>
-<tr class="memdesc:aa926167334fd02c0a51c5c20a628eb3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handling received message from subscribed topic "ESEiot/TeamFyre/roomba/controller". <br /></td></tr>
+<tr class="memitem:aa926167334fd02c0a51c5c20a628eb3b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#aa926167334fd02c0a51c5c20a628eb3b">on_message</a> (const struct mosquitto_message *message) override</td></tr>
+<tr class="memdesc:aa926167334fd02c0a51c5c20a628eb3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle received message from subscribed topic.  <a href="#aa926167334fd02c0a51c5c20a628eb3b">More...</a><br /></td></tr>
 <tr class="separator:aa926167334fd02c0a51c5c20a628eb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a745c15d2966b866c7ec913012547a1ae"><td class="memItemLeft" align="right" valign="top"><a id="a745c15d2966b866c7ec913012547a1ae"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_subscribe</b> (int mid, int qos_count, const int *granted_qos) override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a745c15d2966b866c7ec913012547a1ae">on_subscribe</a> (int mid, int qos_count, const int *granted_qos) override</td></tr>
+<tr class="memdesc:a745c15d2966b866c7ec913012547a1ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">subscribes to MQTT Topic <br /></td></tr>
 <tr class="separator:a745c15d2966b866c7ec913012547a1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e1add070044b78dfe53fb2ce37f66f5"><td class="memItemLeft" align="right" valign="top"><a id="a1e1add070044b78dfe53fb2ce37f66f5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a1e1add070044b78dfe53fb2ce37f66f5">on_log</a> (int level, const char *str) override</td></tr>
-<tr class="memdesc:a1e1add070044b78dfe53fb2ce37f66f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">logging MQTT connection description <br /></td></tr>
+<tr class="memitem:a1e1add070044b78dfe53fb2ce37f66f5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#a1e1add070044b78dfe53fb2ce37f66f5">on_log</a> (int level, const char *str) override</td></tr>
+<tr class="memdesc:a1e1add070044b78dfe53fb2ce37f66f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs data  <a href="#a1e1add070044b78dfe53fb2ce37f66f5">More...</a><br /></td></tr>
 <tr class="separator:a1e1add070044b78dfe53fb2ce37f66f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b6be3bb451db964cc325c3b904ca7a"><td class="memItemLeft" align="right" valign="top"><a id="ab0b6be3bb451db964cc325c3b904ca7a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_error</b> () override</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMQTTDataHandler.html#ab0b6be3bb451db964cc325c3b904ca7a">on_error</a> () override</td></tr>
+<tr class="memdesc:ab0b6be3bb451db964cc325c3b904ca7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an error <br /></td></tr>
 <tr class="separator:ab0b6be3bb451db964cc325c3b904ca7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -184,7 +179,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_error</b> 
 </div><div class="memdoc">
 
 <p>Constructor to initialise MQTT parameters and data parameter. </p>
-<p><a class="el" href="classMQTTDataHandler.html">MQTTDataHandler</a> class member function implementation. </p>
+<p>MQTTDatahandler member functions.</p>
+<p><a class="el" href="classMQTTDataHandler.html">MQTTDataHandler</a> class member function implementation </p>
 
 </div>
 </div>
@@ -213,15 +209,113 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_error</b> 
 </table>
 </div><div class="memdoc">
 
-<p>virtual functions supplied by mosquittopp.h for handling MQTT connections </p>
-<p>function that subscribes to topic "ESEiot/TeamFyre/roomba/controller" to receive Commands/messages for roomba control </p>
+<p>note virtual functions supplied by mosquittopp.h for handling MQTT connections </p>
+<p>function that subscribes to topic "ESEiot/TeamFyre/roomba/controller" to receive Commands/messages for roomba control</p>
+<p>connecting to broker </p>
 <p>Only attempt to subscribe on a successful connect. </p>
+
+</div>
+</div>
+<a id="a1f48d8d0251a77ae21156b143f2b8ad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f48d8d0251a77ae21156b143f2b8ad7">&#9670;&nbsp;</a></span>on_disconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MQTTDataHandler::on_disconnect </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Warning message when disconnected from the broker. </p>
+<p>If the MQTT server disconnected. </p>
+
+</div>
+</div>
+<a id="a1e1add070044b78dfe53fb2ce37f66f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1add070044b78dfe53fb2ce37f66f5">&#9670;&nbsp;</a></span>on_log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MQTTDataHandler::on_log </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>logs data </p>
+<p>logging MQTT connection description </p>
+
+</div>
+</div>
+<a id="aa926167334fd02c0a51c5c20a628eb3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa926167334fd02c0a51c5c20a628eb3b">&#9670;&nbsp;</a></span>on_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MQTTDataHandler::on_message </td>
+          <td>(</td>
+          <td class="paramtype">const struct mosquitto_message *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle received message from subscribed topic. </p>
+<p>Handling received message from subscribed topic "ESEiot/TeamFyre/roomba/controller". </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="MQTTDataHandler_8h_source.html">MQTTDataHandler.h</a></li>
-<li>/home/patrick/SE_Roomba/Roomba_Code/MQTTDataHandler.cpp</li>
+<li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="MQTTDataHandler_8cpp.html">MQTTDataHandler.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

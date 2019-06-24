@@ -1,3 +1,5 @@
+/** @file */
+///\brief statemachine function handeling events/commands from the Command Processor
 #include "statemachine.h"
 #include "OpenInterfaceConfig.h"
 #include "SerialLink.h"
@@ -10,7 +12,6 @@
 #include <vector>
 
 using namespace std::chrono_literals;
-///statemachine function handeling events/commands from the Command Processor
 ///Most actions of the roomba are handled by the CommandProcessor
 ///Events not linked to MQTT commands are executed here
 void sendsignal(const std::string &signalp, SerialLink &slp, int &Modep)

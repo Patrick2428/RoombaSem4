@@ -14,7 +14,7 @@ void handleSIGINT(int /* s */)
 
 int main(int argc, char *argv[])
 {
-  //Initialisation
+  ///Initialisation
   std::string mqttBroker{MQTT_LOCAL_BROKER};
   std::string message , command;
   int mqttBrokerPort{MQTT_LOCAL_BROKER_PORT};
@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
   std::cout << "Version: " << VERSION <<std::endl;
   std::cout << "Authors: " << AUTHORS <<std::endl;
 
+  ///SHR
   signal(SIGINT,handleSIGINT);
 
   mosqpp::lib_init();

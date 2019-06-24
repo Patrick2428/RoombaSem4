@@ -1,3 +1,4 @@
+/** @file */
 #ifndef MQTTDATAHANDLER_H
 #define MQTTDATAHANDLER_H
 
@@ -30,14 +31,21 @@ class MQTTDataHandler : public mosqpp::mosquittopp
 
 protected:
 
-  ///virtual functions supplied by mosquittopp.h for handling MQTT connections
+  ///note virtual functions supplied by mosquittopp.h for handling MQTT connections
+
+  ///connecting to broker
   virtual void on_connect(int rc) override;
+  ///Warning message when disconnected from the broker
   virtual void on_disconnect(int rc) override;
+  ///Handle received message from subscribed topic
   virtual void on_message(const struct mosquitto_message *message) override;
+  ///subscribes to MQTT Topic
   virtual void on_subscribe(int mid, int qos_count,
                              const int *granted_qos) override;
+  ///logs data
   virtual void on_log(int level, const char *str) override;
-  virtual void on_error() override;
+  ///logs an error
+  virtual void on_error() override; 
 
  private:
   ///Data received by subscription

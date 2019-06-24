@@ -1,3 +1,5 @@
+/** @file */
+///\brief MQTTDatahandler class definition
 #ifndef MQTTCONFIG_H
 #define MQTTCONFIG_H
 
@@ -28,9 +30,11 @@ const bool MQTT_RETAIN_OFF{false};
 /// message.
 const bool MQTT_RETAIN_ON{true};
 
+/// Set Local MQTT broker to hivemq broker
 const std::string MQTT_LOCAL_BROKER{"broker.hivemq.com"};
 const int MQTT_LOCAL_BROKER_PORT{1883};
 
+/// Team name 
 const std::string GROUP{"TeamFyre"};
 /// @note Every topic must start with MQTT_TOPIC_ROOT.
 const std::string MQTT_TOPIC_ROOT{"ESEiot/" + GROUP };

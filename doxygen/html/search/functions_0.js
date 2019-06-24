@@ -1,4 +1,8 @@
 var searchData=
 [
+  ['addcommand',['addCommand',['../classCommandProcessor.html#a1acfe74b76621697eea7d267fec92bd1',1,'CommandProcessor']]],
+  ['addcommands',['addCommands',['../CommandProcessorInit_8cpp.html#a986fb9cb50310fa43a811f226d783e69',1,'addCommands(CommandProcessor &amp;cmdp, SerialLink &amp;sl, rotationMotor &amp;lm, rotationMotor &amp;rm, int &amp;RoombaMode, MQTTDataHandler &amp;MQTTData):&#160;CommandProcessorInit.cpp'],['../Definitions_8h.html#a986fb9cb50310fa43a811f226d783e69',1,'addCommands(CommandProcessor &amp;cmdp, SerialLink &amp;sl, rotationMotor &amp;lm, rotationMotor &amp;rm, int &amp;RoombaMode, MQTTDataHandler &amp;MQTTData):&#160;CommandProcessorInit.cpp']]],
+  ['adddrivecommands',['addDriveCommands',['../CommandProcessorInit_8cpp.html#aacae8e36c69888b537425871c597edbd',1,'addDriveCommands(CommandProcessor &amp;cmdp, SerialLink &amp;sl, rotationMotor &amp;lm, rotationMotor &amp;rm, MQTTDataHandler &amp;MQTTData):&#160;CommandProcessorInit.cpp'],['../Definitions_8h.html#aacae8e36c69888b537425871c597edbd',1,'addDriveCommands(CommandProcessor &amp;cmdp, SerialLink &amp;sl, rotationMotor &amp;lm, rotationMotor &amp;rm, MQTTDataHandler &amp;MQTTData):&#160;CommandProcessorInit.cpp']]],
+  ['addsong',['addSong',['../OpenInterfaceConfig_8cpp.html#ae01c63e32a874aa054422ba4bdf6c683',1,'addSong(int sel):&#160;OpenInterfaceConfig.cpp'],['../OpenInterfaceConfig_8h.html#ae01c63e32a874aa054422ba4bdf6c683',1,'addSong(int sel):&#160;OpenInterfaceConfig.cpp']]],
   ['appendmessage',['appendMessage',['../classMQTTDataHandler.html#a2af5d756ea82802fe94499e8e3cd39dc',1,'MQTTDataHandler']]]
 ];

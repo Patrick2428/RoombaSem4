@@ -7,6 +7,7 @@ CommandProcessor::CommandProcessor()
 {
 }
 
+///Adds a command to the map using an iterator to move to the end of the map
 void CommandProcessor::addCommand(const std::string &command,CommandProcessor::commandfunction_t cf)
 {
   auto p = commands_.find(command);
@@ -16,10 +17,11 @@ void CommandProcessor::addCommand(const std::string &command,CommandProcessor::c
     }
   else
     {
-      //If a command already exists it shouldn't be added
+      ///If a command already exists it shouldn't be added
     }
 }
 
+///executes the lambda function linked to the specific command 
 void CommandProcessor::executeCommand(const std::string &command)
 {
 // p is an iterator
@@ -31,11 +33,13 @@ commandfunc();
 }
 else
 {
+  ///will not execute if no link is found
     std::cout<<"Error: command could not be found"<<std::endl;
 }
 
 }
 
+///removes specific commands from the map. 
 void CommandProcessor::removeCommand(const std::string &command)
 {
   auto p = commands_.find(command);

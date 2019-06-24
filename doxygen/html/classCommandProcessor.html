@@ -76,37 +76,132 @@ $(function() {
 Collaboration diagram for CommandProcessor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCommandProcessor__coll__graph.png" border="0" usemap="#CommandProcessor_coll__map" alt="Collaboration graph"/></div>
-<map name="CommandProcessor_coll__map" id="CommandProcessor_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a2593afb28942ab7ced54b135a9dd2002"><td class="memItemLeft" align="right" valign="top"><a id="a2593afb28942ab7ced54b135a9dd2002"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>commandfunction_t</b> = std::function&lt; void()&gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a2593afb28942ab7ced54b135a9dd2002">commandfunction_t</a> = std::function&lt; void()&gt;</td></tr>
+<tr class="memdesc:a2593afb28942ab7ced54b135a9dd2002"><td class="mdescLeft">&#160;</td><td class="mdescRight">template commandfunction_t for functional function <br /></td></tr>
 <tr class="separator:a2593afb28942ab7ced54b135a9dd2002"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5643028cf10be143aab4e42939b22880"><td class="memItemLeft" align="right" valign="top"><a id="a5643028cf10be143aab4e42939b22880"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a5643028cf10be143aab4e42939b22880">CommandProcessor</a> ()</td></tr>
-<tr class="memdesc:a5643028cf10be143aab4e42939b22880"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommandProcessor.html" title="CommandProcessor class initialisiation for handeling commands and link them to serial Interface...">CommandProcessor</a> class member functions to handle commands. <br /></td></tr>
+<tr class="memitem:a5643028cf10be143aab4e42939b22880"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a5643028cf10be143aab4e42939b22880">CommandProcessor</a> ()</td></tr>
+<tr class="memdesc:a5643028cf10be143aab4e42939b22880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor and Destructor.  <a href="#a5643028cf10be143aab4e42939b22880">More...</a><br /></td></tr>
 <tr class="separator:a5643028cf10be143aab4e42939b22880"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1acfe74b76621697eea7d267fec92bd1"><td class="memItemLeft" align="right" valign="top"><a id="a1acfe74b76621697eea7d267fec92bd1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addCommand</b> (const std::string &amp;command, CommandProcessor::commandfunction_t cf)</td></tr>
+<tr class="memitem:a1acfe74b76621697eea7d267fec92bd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a1acfe74b76621697eea7d267fec92bd1">addCommand</a> (const std::string &amp;command, <a class="el" href="classCommandProcessor.html#a2593afb28942ab7ced54b135a9dd2002">CommandProcessor::commandfunction_t</a> cf)</td></tr>
+<tr class="memdesc:a1acfe74b76621697eea7d267fec92bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">add command function, to insert a new map command  <a href="#a1acfe74b76621697eea7d267fec92bd1">More...</a><br /></td></tr>
 <tr class="separator:a1acfe74b76621697eea7d267fec92bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a830f1939e458f31f0cd2d42855609f"><td class="memItemLeft" align="right" valign="top"><a id="a3a830f1939e458f31f0cd2d42855609f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>executeCommand</b> (const std::string &amp;command)</td></tr>
+<tr class="memitem:a3a830f1939e458f31f0cd2d42855609f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a3a830f1939e458f31f0cd2d42855609f">executeCommand</a> (const std::string &amp;command)</td></tr>
+<tr class="memdesc:a3a830f1939e458f31f0cd2d42855609f"><td class="mdescLeft">&#160;</td><td class="mdescRight">execute command function found in the map  <a href="#a3a830f1939e458f31f0cd2d42855609f">More...</a><br /></td></tr>
 <tr class="separator:a3a830f1939e458f31f0cd2d42855609f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ed43f39bab4705540c2994a07c4104"><td class="memItemLeft" align="right" valign="top"><a id="a45ed43f39bab4705540c2994a07c4104"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeCommand</b> (const std::string &amp;command)</td></tr>
+<tr class="memitem:a45ed43f39bab4705540c2994a07c4104"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommandProcessor.html#a45ed43f39bab4705540c2994a07c4104">removeCommand</a> (const std::string &amp;command)</td></tr>
+<tr class="memdesc:a45ed43f39bab4705540c2994a07c4104"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove command function from the map  <a href="#a45ed43f39bab4705540c2994a07c4104">More...</a><br /></td></tr>
 <tr class="separator:a45ed43f39bab4705540c2994a07c4104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommandProcessor.html" title="CommandProcessor class initialisiation for handeling commands and link them to serial Interface...">CommandProcessor</a> class initialisiation for handeling commands and link them to serial Interface. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5643028cf10be143aab4e42939b22880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5643028cf10be143aab4e42939b22880">&#9670;&nbsp;</a></span>CommandProcessor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CommandProcessor::CommandProcessor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor and Destructor. </p>
+<p><a class="el" href="classCommandProcessor.html" title="CommandProcessor class initialisiation for handeling commands and link them to serial Interface...">CommandProcessor</a> class member functions to handle commands. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1acfe74b76621697eea7d267fec92bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1acfe74b76621697eea7d267fec92bd1">&#9670;&nbsp;</a></span>addCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandProcessor::addCommand </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCommandProcessor.html#a2593afb28942ab7ced54b135a9dd2002">CommandProcessor::commandfunction_t</a>&#160;</td>
+          <td class="paramname"><em>cf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add command function, to insert a new map command </p>
+<p>Adds a command to the map using an iterator to move to the end of the map. </p>
+<p>If a command already exists it shouldn't be added </p>
+
+</div>
+</div>
+<a id="a3a830f1939e458f31f0cd2d42855609f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a830f1939e458f31f0cd2d42855609f">&#9670;&nbsp;</a></span>executeCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandProcessor::executeCommand </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>execute command function found in the map </p>
+<p>executes the lambda function linked to the specific command </p>
+<p>will not execute if no link is found </p>
+
+</div>
+</div>
+<a id="a45ed43f39bab4705540c2994a07c4104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ed43f39bab4705540c2994a07c4104">&#9670;&nbsp;</a></span>removeCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandProcessor::removeCommand </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove command function from the map </p>
+<p>removes specific commands from the map. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="CommandProcessor_8h_source.html">CommandProcessor.h</a></li>
-<li>/home/patrick/SE_Roomba/Roomba_Code/CommandProcessor.cpp</li>
+<li>/home/patrick/SE_Roomba/Roomba_Code/<a class="el" href="CommandProcessor_8cpp.html">CommandProcessor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

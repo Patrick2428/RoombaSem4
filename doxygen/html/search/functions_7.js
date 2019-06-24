@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['resetdata',['resetData',['../classMQTTDataHandler.html#a98ab1b3de390ff7477336a61ea3bf3a4',1,'MQTTDataHandler']]],
-  ['rotationmotor',['rotationMotor',['../classrotationMotor.html#a66c21ecfd5a852172d593cde4759dc77',1,'rotationMotor']]]
+  ['on_5fconnect',['on_connect',['../classMQTTDataHandler.html#a19f71fb2aa286e1649429011537d1c31',1,'MQTTDataHandler']]],
+  ['on_5fdisconnect',['on_disconnect',['../classMQTTDataHandler.html#a1f48d8d0251a77ae21156b143f2b8ad7',1,'MQTTDataHandler']]],
+  ['on_5ferror',['on_error',['../classMQTTDataHandler.html#ab0b6be3bb451db964cc325c3b904ca7a',1,'MQTTDataHandler']]],
+  ['on_5flog',['on_log',['../classMQTTDataHandler.html#a1e1add070044b78dfe53fb2ce37f66f5',1,'MQTTDataHandler']]],
+  ['on_5fmessage',['on_message',['../classMQTTDataHandler.html#aa926167334fd02c0a51c5c20a628eb3b',1,'MQTTDataHandler']]],
+  ['on_5fsubscribe',['on_subscribe',['../classMQTTDataHandler.html#a745c15d2966b866c7ec913012547a1ae',1,'MQTTDataHandler']]]
 ];

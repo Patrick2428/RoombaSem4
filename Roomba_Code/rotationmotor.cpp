@@ -1,3 +1,5 @@
+/** @file */
+///\brief rotationmotor member functions
 #include "rotationmotor.h"
 #include <iostream>
 ///Implementation of member functions of rotatioMotor class
