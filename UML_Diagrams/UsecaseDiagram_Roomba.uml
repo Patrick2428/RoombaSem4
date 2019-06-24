@@ -1,0 +1,73 @@
+@startuml
+
+ 
+
+title Use Case diagram Roomba\nfunctional view\nGroup: Patrick, Ana and Nina
+
+ 
+
+left to right direction
+
+skinparam packageStyle rectangle
+
+ 
+
+actor raspberry
+
+actor sensehat
+
+actor object
+
+actor dirt
+
+actor charge_docking_station
+
+ 
+
+rectangle Roomba <<system>> {
+
+  raspberry -- (cleaning)
+
+  raspberry -- (docking)
+
+  raspberry -- (inputcommand)
+
+   
+
+  dirt -- (detecting dirt)
+
+  (detecting dirt) .> (cleaning)
+
+  (cleaning) .> (initialising) : <<include>>
+
+  (cleaning) ..> (moving) : <<include>>
+
+ 
+
+  charge_docking_station -- (docking)
+
+  (docking) .> (charging battery) : <<include>>
+
+ 
+
+  (inputcommand) .> (execute command)
+
+  (inputcommand) .> (battle mode)
+
+  (battle mode) .> (play song) : <<include>>
+
+  (execute command) ..> (moving) : <<include>>
+
+  (inputcommand) ..> sensehat : <<include>>
+
+ 
+
+  object -- (moving)
+
+ 
+
+}
+
+ 
+
+@enduml
