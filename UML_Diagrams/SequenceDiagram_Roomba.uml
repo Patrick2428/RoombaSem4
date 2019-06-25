@@ -1,0 +1,55 @@
+
+@startuml
+
+title Sequence diagram of Roomba Source Code\nProject Group: Nina, Patrick, Ana
+
+participant "main()"
+actor operator
+participant "CommandProcessor"
+participant "RotationMotor" 
+participant "SerialLink"
+participant "MQTTDataHandler"
+participant "SenseHat"
+
+==Initialisation==
+
+note left "SenseHat"
+System starts-up
+Connects to mqtt broker
+end note
+
+"main()" -> "CommandProcessor" : <constructor>	
+"main()" -> "RotationMotor" : <constructor>
+"main()" -> "SerialLink" : <constructor>
+"main()" -> "MQTTDataHandler" : <constructor>
+...
+"main()" -> "SerialLink" : startSafe()
+"main()" -> "CommandProcessor" : addCommands()
+"main()" -> "MQTTDataHandler" : sendMessage()
+"MQTTDataHandler" -> "main()" : getMessage()
+"main()" -> "CommandProcessor" : executeCommand() - Idle
+
+==Statemachine==
+note left "SenseHat"
+Looping
+Receive commands from MQTT broker
+sends execution signal via serialLink
+end note
+
+"main()" -> "MQTTDataHandler" : loop()
+"MQTTDataHandler" -> "main()" : getData()
+"main()" -> "CommandProcessor" : executeCommand() 
+activate CommandProcessor
+"CommandProcessor" -> SerialLink : sendsignal()
+deactivate CommandProcessor
+"main()" -> "MQTTDataHandler" : sendmessage()
+"main()" -> "MQTTDataHandler" : resetData() - idle
+...
+operator -> "main()" : Kill command
+
+
+
+
+
+
+@enduml

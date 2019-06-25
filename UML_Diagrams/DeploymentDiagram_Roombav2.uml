@@ -1,0 +1,87 @@
+@startuml
+
+ 
+
+title Deployment diagram RPi and Roomba\nprojectgroup: Ana, Patrick and Nina\n
+
+ 
+
+node MqttBroker {
+
+}
+
+ 
+
+node WebBrowser {
+
+}
+
+ 
+
+node GUI {
+
+}
+
+ 
+
+node SenseHAT {
+
+}
+
+ 
+
+node Roomba {
+
+component SerialLink
+
+component control
+
+}
+
+ 
+
+node RaspberryPi {
+
+component Code
+
+component command
+
+component logger
+
+}
+
+ 
+
+node Laptop {
+
+component SerialLink
+
+}
+
+ 
+
+ 
+
+RaspberryPi -down--> Roomba
+
+Roomba -up--> RaspberryPi : Serial Link
+
+RaspberryPi -> Laptop : <<wireless>> Serial Link
+
+RaspberryPi -> MqttBroker
+
+RaspberryPi -up--> SenseHAT : <<GPIO>>
+
+ 
+
+GUI -down--> MqttBroker : <<internet>>
+
+WebBrowser -up--> MqttBroker : <<internet>>
+
+ 
+
+ 
+
+ 
+
+@enduml
